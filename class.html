@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Classes | TsquareEduTech</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Sidebar (copied and adapted from dashboard.html) -->
+  <div class="flex min-h-screen">
+    <aside class="sidebar-gradient w-72 text-white flex flex-col py-8 px-6 shadow-xl">
+      <div class="flex items-center mb-10">
+        <img src="Image/logo.png" alt="Logo" class="w-10 h-10 mr-2 rounded-full">
+        <span class="font-bold text-xl">TsquareEduTech</span>
+      </div>
+      <nav class="flex-1">
+        <ul class="space-y-6">
+          <li><a href="dashboard.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Dashboard</a></li>
+          <li><a href="profile.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Profile</a></li>
+          <li><a href="class.html" class="flex items-center font-semibold bg-white bg-opacity-20 rounded px-4 py-3">Classes</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Assignment</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Exams</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Leaderboard</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Archives</a></li>
+        </ul>
+      </nav>
+      <div class="mt-10 flex items-center gap-3">
+        <img src="Image/urban-double-exposure-collage-concept.jpg" alt="User" class="user-avatar w-8 h-8 rounded-full border-2 border-white">
+        <span class="user-name font-semibold">Temitope Olayemi</span>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+      <header class="bg-white shadow p-4 flex justify-between items-center rounded mb-8">
+        <h1 class="text-xl font-bold text-blue-700">Upcoming Classes</h1>
+        <a href="dashboard.html" class="text-blue-600 hover:underline">Back to Dashboard</a>
+      </header>
+      <section class="mb-8">
+        <h2 class="text-lg font-semibold mb-4">Your Next Classes</h2>
+        <div id="classList" class="grid gap-6 md:grid-cols-2">
+          <!-- Classes will be loaded here -->
+        </div>
+      </section>
+      <section>
+        <h2 class="text-lg font-semibold mb-4">Join a Live Class</h2>
+        <div class="bg-white p-6 rounded shadow flex flex-col md:flex-row items-center gap-4">
+          <input type="text" id="classCode" placeholder="Enter class code" class="border p-2 rounded w-full md:w-1/2">
+          <button id="joinBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Join</button>
+        </div>
+        <p id="joinMsg" class="mt-2 text-green-600"></p>
+      </section>
+    </main>
+  </div>
+  <script>
+    // Dynamic user info from localStorage
+    const userName = localStorage.getItem('userName') || 'User';
+    const userAvatar = localStorage.getItem('userAvatar') || 'Image/urban-double-exposure-collage-concept.jpg';
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.user-name').forEach(el => el.textContent = userName);
+      document.querySelectorAll('.user-avatar').forEach(el => el.src = userAvatar);
+    });
+    // Example: Fetch upcoming classes from JSONPlaceholder (simulated)
+    fetch('https://jsonplaceholder.typicode.com/posts?_limit=4')
+      .then(res => res.json())
+      .then(classes => {
+        const classList = document.getElementById('classList');
+        classList.innerHTML = classes.map(cls => `
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="font-bold text-blue-700 mb-2">${cls.title}</h3>
+            <p class="text-gray-600 mb-2">${cls.body.substring(0, 80)}...</p>
+            <span class="text-xs text-gray-400">Class ID: ${cls.id}</span>
+          </div>
+        `).join('');
+      });
+    // Join class logic
+    document.getElementById('joinBtn').onclick = function() {
+      const code = document.getElementById('classCode').value.trim();
+      const msg = document.getElementById('joinMsg');
+      if(code.length > 0) {
+        msg.textContent = `Successfully joined class with code: ${code}`;
+        msg.classList.remove('text-red-600');
+        msg.classList.add('text-green-600');
+      } else {
+        msg.textContent = 'Please enter a valid class code.';
+        msg.classList.remove('text-green-600');
+        msg.classList.add('text-red-600');
+      }
+    };
+  </script>
+  <style>
+    .sidebar-gradient {
+      background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    }
+  </style>
+</body>
+</html>

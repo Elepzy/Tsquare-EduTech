@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignments | TsquareEduTech</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+  <style>
+    .sidebar-gradient {
+      background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="sidebar-gradient w-72 text-white flex flex-col py-8 px-6 shadow-xl">
+      <div class="flex items-center mb-10">
+        <img src="Image/logo.png" alt="Logo" class="w-10 h-10 mr-2 rounded-full">
+        <span class="font-bold text-xl">TsquareEduTech</span>
+      </div>
+      <nav class="flex-1">
+        <ul class="space-y-6">
+          <li><a href="dashboard.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Dashboard</a></li>
+          <li><a href="profile.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Profile</a></li>
+          <li><a href="class.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Classes</a></li>
+          <li><a href="assignment.html" class="flex items-center font-semibold bg-white bg-opacity-20 rounded px-4 py-3">Assignment</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Exams</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Leaderboard</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Archives</a></li>
+        </ul>
+      </nav>
+      <div class="mt-10 flex items-center gap-3">
+        <img src="Image/urban-double-exposure-collage-concept.jpg" alt="User" class="user-avatar w-8 h-8 rounded-full border-2 border-white">
+        <span class="user-name font-semibold">Temitope Olayemi</span>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+      <header class="bg-white shadow p-4 flex justify-between items-center rounded mb-8">
+        <h1 class="text-xl font-bold text-blue-700">Assignments</h1>
+        <a href="dashboard.html" class="text-blue-600 hover:underline">Back to Dashboard</a>
+      </header>
+      <!-- Add assignment filter and stats -->
+      <section class="mb-8">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">Your Assignments</h2>
+          <select id="filterStatus" class="border rounded px-2 py-1 text-sm">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+        <div class="mb-4">
+          <span id="stats" class="text-gray-600"></span>
+        </div>
+        <div id="assignmentList" class="grid gap-6 md:grid-cols-2">
+          <!-- Assignments will be loaded here -->
+        </div>
+      </section>
+      <section>
+        <h2 class="text-lg font-semibold mb-4">Submit Assignment</h2>
+        <div class="bg-white p-6 rounded shadow flex flex-col md:flex-row items-center gap-4">
+          <input type="text" id="assignmentTitle" placeholder="Assignment title" class="border p-2 rounded w-full md:w-1/2">
+          <button id="submitBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
+        </div>
+        <p id="submitMsg" class="mt-2 text-green-600"></p>
+      </section>
+    </main>
+  </div>
+  <script>
+    // Dynamic user info from localStorage
+    const userName = localStorage.getItem('userName') || 'User';
+    const userAvatar = localStorage.getItem('userAvatar') || 'Image/urban-double-exposure-collage-concept.jpg';
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.user-name').forEach(el => el.textContent = userName);
+      document.querySelectorAll('.user-avatar').forEach(el => el.src = userAvatar);
+    });
+    // Example: Fetch assignments from JSONPlaceholder (simulated)
+    let assignmentsData = [];
+    function renderAssignments(filter = 'all') {
+      const assignmentList = document.getElementById('assignmentList');
+      let filtered = assignmentsData;
+      if (filter === 'completed') filtered = assignmentsData.filter(a => a.completed);
+      if (filter === 'pending') filtered = assignmentsData.filter(a => !a.completed);
+      assignmentList.innerHTML = filtered.map(ass => `
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="font-bold text-blue-700 mb-2">${ass.title}</h3>
+          <p class="text-gray-600 mb-2">Status: ${ass.completed ? 'Completed' : 'Pending'}</p>
+          <span class="text-xs text-gray-400">Assignment ID: ${ass.id}</span>
+        </div>
+      `).join('');
+      // Stats
+      const stats = document.getElementById('stats');
+      const completed = assignmentsData.filter(a => a.completed).length;
+      const pending = assignmentsData.filter(a => !a.completed).length;
+      stats.textContent = `Total: ${assignmentsData.length}, Completed: ${completed}, Pending: ${pending}`;
+    }
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+      .then(res => res.json())
+      .then(assignments => {
+        assignmentsData = assignments;
+        renderAssignments();
+      });
+    document.getElementById('filterStatus').onchange = function() {
+      renderAssignments(this.value);
+    };
+    // Submit assignment logic
+    document.getElementById('submitBtn').onclick = function() {
+      const title = document.getElementById('assignmentTitle').value.trim();
+      const msg = document.getElementById('submitMsg');
+      if(title.length > 0) {
+        msg.textContent = `Assignment "${title}" submitted successfully!`;
+        msg.classList.remove('text-red-600');
+        msg.classList.add('text-green-600');
+      } else {
+        msg.textContent = 'Please enter a valid assignment title.';
+        msg.classList.remove('text-green-600');
+        msg.classList.add('text-red-600');
+      }
+    };
+  </script>
+</body>
+</html>

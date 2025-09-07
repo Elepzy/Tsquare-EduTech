@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exams | TsquareEduTech</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+  <style>
+    .sidebar-gradient {
+      background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="sidebar-gradient w-72 text-white flex flex-col py-8 px-6 shadow-xl">
+      <div class="flex items-center mb-10">
+        <img src="Image/logo.png" alt="Logo" class="w-10 h-10 mr-2 rounded-full">
+        <span class="font-bold text-xl">TsquareEduTech</span>
+      </div>
+      <nav class="flex-1">
+        <ul class="space-y-6">
+          <li><a href="dashboard.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Dashboard</a></li>
+          <li><a href="profile.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Profile</a></li>
+          <li><a href="class.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Classes</a></li>
+          <li><a href="assignment.html" class="flex items-center font-semibold bg-white bg-opacity-10 rounded px-4 py-3 hover:bg-white hover:bg-opacity-20 transition">Assignment</a></li>
+          <li><a href="exam.html" class="flex items-center font-semibold bg-white bg-opacity-20 rounded px-4 py-3">Exams</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Leaderboard</a></li>
+          <li><a href="#" class="flex items-center px-4 py-3 hover:bg-white hover:bg-opacity-20 rounded transition">Archives</a></li>
+        </ul>
+      </nav>
+      <div class="mt-10 flex items-center gap-3">
+        <img src="Image/urban-double-exposure-collage-concept.jpg" alt="User" class="user-avatar w-8 h-8 rounded-full border-2 border-white">
+        <span class="user-name font-semibold">Temitope Olayemi</span>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+      <header class="bg-white shadow p-4 flex justify-between items-center rounded mb-8">
+        <h1 class="text-xl font-bold text-blue-700">Exams</h1>
+        <a href="dashboard.html" class="text-blue-600 hover:underline">Back to Dashboard</a>
+      </header>
+      <section class="mb-8">
+        <h2 class="text-lg font-semibold mb-4">Upcoming Exams</h2>
+        <div id="examList" class="grid gap-6 md:grid-cols-2">
+          <!-- Exams will be loaded here -->
+        </div>
+      </section>
+      <section>
+        <h2 class="text-lg font-semibold mb-4">Register for Exam</h2>
+        <div class="bg-white p-6 rounded shadow flex flex-col md:flex-row items-center gap-4">
+          <input type="text" id="examTitle" placeholder="Exam title" class="border p-2 rounded w-full md:w-1/2">
+          <button id="registerBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Register</button>
+        </div>
+        <p id="registerMsg" class="mt-2 text-green-600"></p>
+      </section>
+    </main>
+  </div>
+  <script>
+    // Dynamic user info from localStorage
+    const userName = localStorage.getItem('userName') || 'User';
+    const userAvatar = localStorage.getItem('userAvatar') || 'Image/urban-double-exposure-collage-concept.jpg';
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.user-name').forEach(el => el.textContent = userName);
+      document.querySelectorAll('.user-avatar').forEach(el => el.src = userAvatar);
+    });
+    // Example: Fetch exams from JSONPlaceholder (simulated)
+    fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
+      .then(res => res.json())
+      .then(exams => {
+        const examList = document.getElementById('examList');
+        examList.innerHTML = exams.map(exam => `
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="font-bold text-blue-700 mb-2">${exam.title}</h3>
+            <p class="text-gray-600 mb-2">${exam.body.substring(0, 80)}...</p>
+            <span class="text-xs text-gray-400">Exam ID: ${exam.id}</span>
+          </div>
+        `).join('');
+      });
+    // Register exam logic
+    document.getElementById('registerBtn').onclick = function() {
+      const title = document.getElementById('examTitle').value.trim();
+      const msg = document.getElementById('registerMsg');
+      if(title.length > 0) {
+        msg.textContent = `Registered for exam "${title}" successfully!`;
+        msg.classList.remove('text-red-600');
+        msg.classList.add('text-green-600');
+      } else {
+        msg.textContent = 'Please enter a valid exam title.';
+        msg.classList.remove('text-green-600');
+        msg.classList.add('text-red-600');
+      }
+    };
+  </script>
+</body>
+</html>

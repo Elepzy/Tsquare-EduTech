@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - EduPlatform</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="./Image/logo.png" type="image/x-icon">
+</head>
+<body class="bg-gradient-to-br from-indigo-100 via-pink-100 to-white min-h-screen flex items-center justify-center relative overflow-hidden">
+  <!-- Animated SVG background -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bgGradient" x1="0" y1="0" x2="1440" y2="800" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#6366f1" />
+        <stop offset="1" stop-color="#ec4899" />
+      </linearGradient>
+    </defs>
+    <path d="M0,400 C360,600 1080,200 1440,400 L1440,800 L0,800 Z" fill="url(#bgGradient)">
+      <animate attributeName="d" dur="8s" repeatCount="indefinite"
+        values="M0,400 C360,600 1080,200 1440,400 L1440,800 L0,800 Z;
+                M0,350 C400,700 1040,100 1440,350 L1440,800 L0,800 Z;
+                M0,400 C360,600 1080,200 1440,400 L1440,800 L0,800 Z" />
+    </path>
+  </svg>
+  <div class="relative z-10 max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+    <!-- Left Column: Welcome & Illustration -->
+    <div class="md:w-1/2 bg-gradient-to-br from-indigo-500 to-pink-400 text-white flex flex-col justify-center items-center p-10">
+      <img src="Image/logo.png" alt="Logo" class="w-16 h-16 mb-6 rounded-full shadow-lg">
+      <h2 class="text-3xl font-bold mb-4">Join TsquareEduTech</h2>
+      <p class="mb-6 text-lg">Create your account and start learning with the best mentors, interactive classes, and real certificates.</p>
+      <ul class="space-y-3 text-left w-full max-w-xs">
+        <li class="flex items-center gap-2"><span class="bg-white bg-opacity-20 p-2 rounded-full"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></span> Interactive Classes</li>
+        <li class="flex items-center gap-2"><span class="bg-white bg-opacity-20 p-2 rounded-full"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg></span> Assignments & Exams</li>
+        <li class="flex items-center gap-2"><span class="bg-white bg-opacity-20 p-2 rounded-full"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17l4 4 4-4m0-5V3a1 1 0 00-1-1H7a1 1 0 00-1 1v9"/></svg></span> Earn Certificates</li>
+      </ul>
+    </div>
+    <!-- Right Column: Signup Form -->
+    <div class="md:w-1/2 p-10 flex flex-col justify-center">
+      <h2 class="text-2xl font-bold text-indigo-700 mb-6 text-center">Create Your Account</h2>
+      <form id="signupForm" class="space-y-5">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+          <input type="text" id="name" name="name" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-3" required>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+          <input type="email" id="email" name="email" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-3" required>
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-3" required>
+        </div>
+        <div>
+          <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+          <select id="country" name="country" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-3">
+            <option value="NG" data-code="+234">Nigeria</option>
+            <option value="GH" data-code="+233">Ghana</option>
+            <option value="KE" data-code="+254">Kenya</option>
+            <option value="ZA" data-code="+27">South Africa</option>
+            <option value="US" data-code="+1">United States</option>
+          </select>
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" id="password" name="password" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-3" required>
+        </div>
+        <div class="flex items-center">
+          <input type="checkbox" id="terms" name="terms" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+          <label for="terms" class="ml-2 block text-sm text-gray-700">I agree to the <a href="#" class="text-indigo-600 underline">Terms & Conditions</a></label>
+        </div>
+        <button type="submit" class="w-full py-3 px-4 bg-indigo-700 text-white font-semibold rounded-lg shadow hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 flex items-center justify-center mt-2">
+          <span>Sign Up</span>
+        </button>
+        <div id="signupSpinner" class="hidden flex justify-center mt-2"><svg class="animate-spin h-6 w-6 text-indigo-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg></div>
+        <p id="signupError" class="hidden text-center text-red-600 mt-2"></p>
+        <p id="signupSuccess" class="hidden text-center text-green-600 mt-2"></p>
+        <p id="signupMsg" class="mt-4 text-center text-green-600"></p>
+      </form>
+      <p class="mt-6 text-center text-gray-600">Already have an account? <a href="login.html" class="text-indigo-600 underline font-semibold">Login</a></p>
+    </div>
+  </div>
+  <script>
+    // Password toggle
+    document.getElementById('togglePassword').addEventListener('click', function () {
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eyeIcon');
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a9.978 9.978 0 012.042-3.362M6.634 6.634A9.956 9.956 0 0112 5c4.477 0 8.268 2.943 9.542 7a9.978 9.978 0 01-4.293 5.255M15 12a3 3 0 11-6 0 3 3 0 016 0z" />';
+      } else {
+        passwordInput.type = 'password';
+        eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
+      }
+    });
+
+    // Password strength meter
+    document.getElementById('password').addEventListener('input', function () {
+      const val = this.value;
+      const strengthDiv = document.getElementById('passwordStrength');
+      let strength = 0;
+      if (val.length >= 6) strength++;
+      if (/[A-Z]/.test(val)) strength++;
+      if (/[0-9]/.test(val)) strength++;
+      if (/[^A-Za-z0-9]/.test(val)) strength++;
+      let msg = '';
+      let color = '';
+      switch (strength) {
+        case 0:
+        case 1:
+          msg = 'Weak'; color = 'text-red-500'; break;
+        case 2:
+          msg = 'Fair'; color = 'text-yellow-500'; break;
+        case 3:
+          msg = 'Good'; color = 'text-blue-500'; break;
+        case 4:
+          msg = 'Strong'; color = 'text-green-500'; break;
+      }
+      strengthDiv.textContent = val ? `Password strength: ${msg}` : '';
+      strengthDiv.className = `mt-2 text-xs ${color}`;
+    });
+
+    // Country selector logic
+    const countrySelect = document.getElementById('country');
+    const countryFlag = document.getElementById('countryFlag').querySelector('img');
+    const countryCode = document.getElementById('countryCode');
+    countrySelect.addEventListener('change', function () {
+      const selected = countrySelect.options[countrySelect.selectedIndex];
+      countryFlag.src = selected.getAttribute('data-flag');
+      countryFlag.alt = selected.value;
+      countryCode.textContent = selected.getAttribute('data-code');
+    });
+
+    // Real-time validation
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    function validatePhone(phone) {
+      return /^[0-9]{7,15}$/.test(phone.replace(/\s+/g, ''));
+    }
+    document.getElementById('email').addEventListener('input', function () {
+      this.classList.toggle('border-red-500', !validateEmail(this.value));
+    });
+    document.getElementById('phone').addEventListener('input', function () {
+      this.classList.toggle('border-red-500', !validatePhone(this.value));
+    });
+
+    // Signup form logic
+    document.getElementById('signupForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const country = countrySelect.options[countrySelect.selectedIndex].getAttribute('data-code');
+      const password = document.getElementById('password').value;
+      const terms = document.getElementById('terms').checked;
+      const errorDiv = document.getElementById('signupError');
+      const successDiv = document.getElementById('signupSuccess');
+      const spinner = document.getElementById('signupSpinner');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const msg = document.getElementById('signupMsg');
+      errorDiv.classList.add('hidden');
+      errorDiv.textContent = '';
+      successDiv.classList.add('hidden');
+      successDiv.textContent = '';
+
+      // Basic validation
+      if (!name || !email || !phone || !password) {
+        errorDiv.textContent = 'Please fill in all fields.';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+      if (!validateEmail(email)) {
+        errorDiv.textContent = 'Please enter a valid email address.';
+        errorDiv.classList.remove('hidden');
+        document.getElementById('email').classList.add('border-red-500');
+        return;
+      }
+      if (!validatePhone(phone)) {
+        errorDiv.textContent = 'Please enter a valid phone number.';
+        errorDiv.classList.remove('hidden');
+        document.getElementById('phone').classList.add('border-red-500');
+        return;
+      }
+      if (password.length < 6) {
+        errorDiv.textContent = 'Password must be at least 6 characters.';
+        errorDiv.classList.remove('hidden');
+        document.getElementById('password').classList.add('border-red-500');
+        return;
+      }
+      if (!terms) {
+        errorDiv.textContent = 'You must agree to the Terms & Conditions.';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      spinner.classList.remove('hidden');
+      submitBtn.disabled = true;
+      try {
+        const response = await fetch('https://reqres.in/users/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, phone: country + phone })
+        });
+        const data = await response.json();
+        spinner.classList.add('hidden');
+        submitBtn.disabled = false;
+        if (response.ok && data.token) {
+          // Registration successful
+          successDiv.textContent = 'Registration successful! Redirecting...';
+          successDiv.classList.remove('hidden');
+          msg.textContent = 'Registration successful! Please log in.';
+          msg.classList.remove('text-red-600');
+          msg.classList.add('text-green-600');
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 1500);
+        } else {
+          errorDiv.textContent = data.error || 'Registration failed. Please try again.';
+          errorDiv.classList.remove('hidden');
+          msg.textContent = 'Registration failed. Please try again.';
+          msg.classList.remove('text-green-600');
+          msg.classList.add('text-red-600');
+        }
+      } catch (err) {
+        spinner.classList.add('hidden');
+        submitBtn.disabled = false;
+        errorDiv.textContent = 'Network error. Please try again.';
+        errorDiv.classList.remove('hidden');
+        msg.textContent = 'Network error. Please try again.';
+        msg.classList.remove('text-green-600');
+        msg.classList.add('text-red-600');
+      }
+    });
+  </script>
+</body>
+</html>
