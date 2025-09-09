@@ -7,7 +7,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="./Image/logo.png" type="image/x-icon">
 </head>
-<body class="bg-gradient-to-br from-indigo-100 via-pink-100 to-white min-h-screen flex items-center justify-center relative overflow-hidden">
+<body class="bg-gradient-to-br from-indigo-100 via-red-100 to-blue min-h-screen flex items-center justify-center relative overflow-hidden">
   <!-- Animated SVG background -->
   <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -59,70 +59,59 @@
     </div>
   </div>
   <script>
-			// Show/hide password toggle
-			const passwordInput = document.getElementById('password');
-			const togglePassword = document.getElementById('togglePassword');
-			togglePassword.addEventListener('click', function() {
-				const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-				passwordInput.setAttribute('type', type);
-				this.setAttribute('aria-label', type === 'password' ? 'Show password' : 'Hide password');
-			});
-
-			// Form validation and login simulation
-			const loginForm = document.getElementById('loginForm');
-			const errorMsg = document.getElementById('errorMsg');
-			const loginBtn = document.getElementById('loginBtn');
-			const loginBtnText = document.getElementById('loginBtnText');
-			const spinner = document.getElementById('spinner');
-			loginForm.addEventListener('submit', async function(e) {
-				e.preventDefault();
-				errorMsg.classList.add('hidden');
-				// Simple validation
-				const email = loginForm.email.value.trim();
-				const password = loginForm.password.value.trim();
-				if (!email || !password) {
-					errorMsg.textContent = 'Please enter both email and password.';
-					errorMsg.classList.remove('hidden');
-					return;
-				}
-				if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-					errorMsg.textContent = 'Please enter a valid email address.';
-					errorMsg.classList.remove('hidden');
-					return;
-				}
-				// Show spinner
-				loginBtnText.textContent = '';
-				spinner.classList.remove('hidden');
-				loginBtn.disabled = true;
-				// Simulate API call
-				try {
-					const res = await fetch('https://reqres.in/api/login', {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-							'x-api-key': 'reqres-free-v1'
-						},
-						body: JSON.stringify({ email, password })
-					});
-					const data = await res.json();
-					if (res.ok) {
-						// Save user details to localStorage
-						localStorage.setItem('userName', email.split('@')[0]);
-						localStorage.setItem('userEmail', email);
-						localStorage.setItem('userAvatar', './Image/urban-double-exposure-collage-concept.jpg'); // Or use a default avatar
-						window.location.href = 'dashboard.html';
-					} else {
-						errorMsg.textContent = data.error || 'Login failed. Please check your credentials.';
-						errorMsg.classList.remove('hidden');
-					}
-				} catch (err) {
-					errorMsg.textContent = 'Network error. Please try again.';
-					errorMsg.classList.remove('hidden');
-				}
-				spinner.classList.add('hidden');
-				loginBtnText.textContent = 'Login';
-				loginBtn.disabled = false;
-			});
-			</script>
+  const loginForm = document.getElementById('loginForm');
+  const loginError = document.getElementById('loginError');
+  const loginSuccess = document.getElementById('loginSuccess');
+  const loginSpinner = document.getElementById('loginSpinner');
+  loginForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    loginError.classList.add('hidden');
+    loginError.textContent = '';
+    loginSuccess.classList.add('hidden');
+    loginSuccess.textContent = '';
+    loginSpinner.classList.remove('hidden');
+    const email = loginForm.email.value.trim();
+    const password = loginForm.password.value.trim();
+    if (!email || !password) {
+      loginError.textContent = 'Please enter both email and password.';
+      loginError.classList.remove('hidden');
+      loginSpinner.classList.add('hidden');
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      loginError.textContent = 'Please enter a valid email address.';
+      loginError.classList.remove('hidden');
+      loginSpinner.classList.add('hidden');
+      return;
+    }
+    try {
+      const res = await fetch('https://reqres.in/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'reqres-free-v1'
+        },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await res.json();
+      loginSpinner.classList.add('hidden');
+      if (res.ok && data.token) {
+        loginSuccess.textContent = 'Login successful! Redirecting...';
+        loginSuccess.classList.remove('hidden');
+        localStorage.setItem('userName', email.split('@')[0]);
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userAvatar', './Image/urban-double-exposure-collage-concept.jpg');
+        window.location.href = 'dashboard.html';
+      } else {
+        loginError.textContent = data.error || 'Login failed. Please check your credentials.';
+        loginError.classList.remove('hidden');
+      }
+    } catch (err) {
+      loginSpinner.classList.add('hidden');
+      loginError.textContent = 'Network error. Please try again.';
+      loginError.classList.remove('hidden');
+    }
+  });
+  </script>
 </body>
 </html>

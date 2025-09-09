@@ -1,4 +1,4 @@
-                <!-- Colored overlay -->
+<!-- Colored overlay -->
                 <div class="absolute inset-0 rounded-2xl z-20 pointer-events-none" style="background: linear-gradient(135deg, rgba(59,130,246,0.25) 0%, rgba(236,72,153,0.25) 100%);"></div>
 
 <!DOCTYPE html>
@@ -10,62 +10,61 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="./Image/logo.png" type="image/x-icon">
 </head>
-<body class="relative">
+<body class="relative bg-gradient-to-br from-indigo-100 via-pink-100 to-white min-h-screen overflow-x-hidden">
+  <div class="relative z-10">
     <!-- Navbar -->
     <nav class="bg-white shadow">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="rounded-full w-10 h-10 flex items-center justify-center">
-                <img src="./Image/logo.png" alt="logo" class="w-8 h-8 rounded-2xl">
-            </div>
-    <a href="#" class="text-2xl font-bold text-blue-600">Tsquare EduTech</a>
-            <ul class="flex space-x-6">
-            <li><a href="#home" class="hover:text-blue-600">Home</a></li>
-                <li><a href="#features" class="hover:text-blue-600">Features</a></li>
-                <li><a href="#about" class="hover:text-blue-600">About</a></li>
-                <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
-            </ul>
-            <div>
-                <a href="login.html" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mr-2">Login</a>
-                <a href="signup.html" class="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">Sign Up</a>
-            </div>
+      <div class="container mx-auto px-4 py-4 flex flex-wrap md:flex-nowrap justify-between items-center">
+        <div class="flex items-center gap-2 mb-2 md:mb-0">
+          <img src="./Image/logo.png" alt="logo" class="w-8 h-8 rounded-2xl">
+          <a href="#" class="text-2xl font-bold text-blue-600">Tsquare EduTech</a>
         </div>
+        <ul class="flex flex-wrap space-x-4 md:space-x-6 mb-2 md:mb-0">
+          <li><a href="#home" class="hover:text-blue-600">Home</a></li>
+          <li><a href="#features" class="hover:text-blue-600">Features</a></li>
+          <li><a href="#about" class="hover:text-blue-600">About</a></li>
+          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+        </ul>
+        <div class="flex gap-2">
+          <a href="login.html" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Login</a>
+          <a href="signup.html" class="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white">Sign Up</a>
+        </div>
+      </div>
     </nav>
-
     <!-- Hero Section -->
     <section class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-8 md:mb-0">
-            <h1 class="text-4xl font-bold mb-4 text-gray-800">Empower Your Learning Journey</h1>
-            <p class="text-2xl  mb-6 text-gray-600">Begin your tech journey and expand your career opportunities in the tech space by learning tech skills in demand..</p>
-            <a href="signup.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">Get Started</a>
+      <div class="w-full md:w-1/2 mb-8 md:mb-0">
+        <h1 class="text-3xl md:text-4xl font-bold mb-4 text-gray-800">Empower Your Learning Journey</h1>
+        <p class="text-lg md:text-2xl mb-6 text-gray-600">Begin your tech journey and expand your career opportunities in the tech space by learning tech skills in demand.</p>
+        <a href="signup.html" class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">Get Started</a>
+      </div>
+      <div class="w-full md:w-1/2 flex justify-center">
+        <div class="relative w-64 h-64 md:w-96 md:h-96 flex items-center justify-center">
+          <img src="./Image/banner.jpg" alt="Learning Banner" class="w-full h-full object-cover rounded-2xl shadow-2xl border-8 border-blue-300">
         </div>
-        <div class="md:w-1/2 flex justify-center">
-            <div class="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center">
-                <img src="./Image/banner.jpg" alt="Learning Banner" class="w-full h-full object-cover rounded-2xl shadow-2xl border-8 border-blue-300">
-            </div>
-        </div>
+      </div>
     </section>
-
     <!-- Features Section -->
-    <!-- <section id="features" class="container mx-auto px-4 py-12">
-        <h2 class="text-3xl font-bold text-center mb-8">Features</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-lg shadow text-center">
-                <img src="Image/icon-courses.png" alt="Courses" class="mx-auto mb-4 w-12 h-12">
-                <h3 class="font-semibold text-lg mb-2">Wide Range of Courses</h3>
-                <p class="text-gray-600">Explore various subjects and skills with our curated course library.</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow text-center">
-                <img src="Image/icon-assignments.png" alt="Assignments" class="mx-auto mb-4 w-12 h-12">
-                <h3 class="font-semibold text-lg mb-2">Assignments & Deadlines</h3>
-                <p class="text-gray-600">Stay on top of your tasks and never miss a deadline.</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow text-center">
-                <img src="Image/icon-community.png" alt="Community" class="mx-auto mb-4 w-12 h-12">
-                <h3 class="font-semibold text-lg mb-2">Community Support</h3>
-                <p class="text-gray-600">Connect, collaborate, and grow with fellow learners.</p>
-            </div>
+    <section id="features" class="container mx-auto px-4 py-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">Features</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow text-center flex flex-col items-center justify-center">
+          <img src="./Image/qa.png" alt="Courses" class="mx-auto mb-4 w-12 h-12">
+          <h3 class="font-semibold text-lg mb-2">Wide Range of Courses</h3>
+          <p class="text-gray-600">Explore various subjects and skills with our curated course library.</p>
         </div>
-    </section> -->
+        <div class="bg-white p-6 rounded-lg shadow text-center flex flex-col items-center justify-center">
+          <img src="./Image/online-course.png" alt="Assignments" class="mx-auto mb-4 w-12 h-12">
+          <h3 class="font-semibold text-lg mb-2">Assignments & Deadlines</h3>
+          <p class="text-gray-600">Stay on top of your tasks and never miss a deadline.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow text-center flex flex-col items-center justify-center">
+          <img src="./Image/community.png" alt="Community" class="mx-auto mb-4 w-12 h-12">
+          <h3 class="font-semibold text-lg mb-2">Community Support</h3>
+          <p class="text-gray-600">Connect, collaborate, and grow with fellow learners.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="container mx-auto px-4 py-12">
@@ -78,19 +77,19 @@
         <h2 class="text-3xl font-bold text-center mb-8">Our Courses</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="bg-white p-6 rounded-lg shadow text-center">
-                <img src="Image/icon-cybersecurity.png" alt="Cybersecurity" class="mx-auto mb-4 w-12 h-12">
+                <img src="./Image/cyber-security.png" alt="Cybersecurity" class="mx-auto mb-4 w-12 h-12">
                 <h3 class="font-semibold text-lg mb-2">Cybersecurity Expert</h3>
                 <p class="text-gray-600 mb-2">Learn ethical hacking, digital forensics, and system protection. 9 months, internship & mentorship included.</p>
                 <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Enroll Now</a>
             </div>
             <div class="bg-white p-6 rounded-lg shadow text-center">
-                <img src="Image/icon-ai.png" alt="AI Automation" class="mx-auto mb-4 w-12 h-12">
+                <img src="./Image/artificial-intelligence.png" alt="AI Automation" class="mx-auto mb-4 w-12 h-12">
                 <h3 class="font-semibold text-lg mb-2">AI Automation Specialist</h3>
                 <p class="text-gray-600 mb-2">Build smart systems with no-code AI tools. 9 months, internship & mentorship included.</p>
                 <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Enroll Now</a>
             </div>
             <div class="bg-white p-6 rounded-lg shadow text-center">
-                <img src="Image/icon-design.png" alt="Product Design" class="mx-auto mb-4 w-12 h-12">
+                <img src="./Image/product-design.png" alt="Product Design" class="mx-auto mb-4 w-12 h-12">
                 <h3 class="font-semibold text-lg mb-2">Product Designer</h3>
                 <p class="text-gray-600 mb-2">Craft beautiful, user-friendly apps and websites. 9 months, internship & mentorship included.</p>
                 <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Enroll Now</a>
@@ -106,27 +105,27 @@
                 <h3 class="text-2xl font-bold mb-6 text-center">All Courses</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-50 p-4 rounded shadow text-center">
-                        <img src="Image/icon-datascience.png" alt="Data Science" class="mx-auto mb-2 w-10 h-10">
+                        <img src="./Image/data-science.png" alt="Data Science" class="mx-auto mb-2 w-10 h-10">
                         <h4 class="font-semibold mb-1">Data Science</h4>
                         <p class="text-gray-600 text-sm">Learn Python, machine learning, and data visualization. 9 months, internship & mentorship included.</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded shadow text-center">
-                        <img src="Image/icon-dataanalysis.png" alt="Data Analysis" class="mx-auto mb-2 w-10 h-10">
+                        <img src="./Image/analysis.png" alt="Data Analysis" class="mx-auto mb-2 w-10 h-10">
                         <h4 class="font-semibold mb-1">Data Analysis</h4>
                         <p class="text-gray-600 text-sm">Master Excel, SQL, and reporting. 9 months, internship & mentorship included.</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded shadow text-center">
-                        <img src="Image/icon-product.png" alt="Product Management" class="mx-auto mb-2 w-10 h-10">
+                        <img src="./Image/product-design.png" alt="Product Management" class="mx-auto mb-2 w-10 h-10">
                         <h4 class="font-semibold mb-1">Product Management</h4>
                         <p class="text-gray-600 text-sm">Lead teams, manage products, and deliver solutions. 9 months, internship & mentorship included.</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded shadow text-center">
-                        <img src="Image/icon-frontend.png" alt="Front-End Development" class="mx-auto mb-2 w-10 h-10">
+                        <img src="./Image/web-programming.png" alt="Front-End Development" class="mx-auto mb-2 w-10 h-10">
                         <h4 class="font-semibold mb-1">Front-End Development</h4>
                         <p class="text-gray-600 text-sm">Build beautiful web apps with HTML, CSS, JS. 9 months, internship & mentorship included.</p>
                     </div>
                     <div class="bg-gray-50 p-4 rounded shadow text-center">
-                        <img src="Image/icon-backend.png" alt="Backend Development" class="mx-auto mb-2 w-10 h-10">
+                        <img src="./Image/backend.png" alt="Backend Development" class="mx-auto mb-2 w-10 h-10">
                         <h4 class="font-semibold mb-1">Backend Development</h4>
                         <p class="text-gray-600 text-sm">Create APIs, manage databases, and server logic. 9 months, internship & mentorship included.</p>
                     </div>
@@ -242,14 +241,15 @@
                 <a href="contact.html" class="text-gray-600 hover:text-blue-600">Contact</a>
             </div>
             <div class="flex space-x-4">
-                <a href="#"><img src="./Image/icons8-facebook-48.png" alt="Facebook" class="w-6 h-6"></a>
+                <a href="https://facebook.com/olayemit" target="_blank"><img src="./Image/icons8-facebook-48.png" alt="Facebook"  class="w-6 h-6"></a>
                 
-                <a href="https://x.com/elepsy"><img src="./Image/icons8-twitter-48.png"  alt="Twitter"  class="w-6 h-6"></a>
-                <a href="#"><img src="./Image/icons8-linkedin-48.png" alt="LinkedIn" class="w-6 h-6"></a>
+                <a href="https://x.com/elepsy" target="_blank"><img src="./Image/icons8-twitter-48.png"  alt="Twitter"  class="w-6 h-6"></a>
 
-                <a href="https://x.com/elepsy" target="_blank"><img src="./Image/icons8-instagram-48.png"  alt="Twitter"  class="w-6 h-6" ></a>
+                <a href="https:linkedin.com/in/olayemitemitope" target="_blank"><img src="./Image/icons8-linkedin-48.png" alt="LinkedIn" class="w-6 h-6"></a>
 
-                <a href="#contact"><img src="./Image/icons8-whatsapp-48.png" alt="LinkedIn" class="w-6 h-6"></a>
+                <a href="https://instagram.com/elepsy2sure" target="_blank"><img src="./Image/icons8-instagram-48.png"  alt="Twitter" class="w-6 h-6" ></a>
+
+                <a href="https://wa.me/2348107078983" target="_blank"><img src="./Image/icons8-whatsapp-48.png" alt="LinkedIn" class="w-6 h-6"></a>
             </div>
             <div class="mt-4 md:mt-0 text-gray-500">&copy; 2025 TsquareEduTech. All rights reserved.</div>
         </div>
